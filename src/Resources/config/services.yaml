@@ -16,13 +16,13 @@ services:
       calls:
         - [ "setContainer", [ "@service_container" ] ]
 
-  Kommunikatisten\ScheduleBundle\:
+  Kommunikatisten\ContaoScheduleBundle\:
     resource: '../../'
     exclude:
       - '../../DependencyInjection/'
       - '../../Entity/'
       - '../../Resources/'
 
-  Kommunikatisten\ScheduleBundle\Controller\:
+  Kommunikatisten\ContaoScheduleBundle\Controller\:
     resource: '../../Controller/'
     tags: [ 'controller.service_arguments','kommunikatisten_schedule' ]

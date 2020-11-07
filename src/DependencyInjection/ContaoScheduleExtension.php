@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @license MIT
  */
 
-namespace Kommunikatisten\ScheduleBundle\DependencyInjection;
+namespace Kommunikatisten\ContaoScheduleBundle\DependencyInjection;
 
 use Exception;
 use Symfony\Component\Config\FileLocator;
@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class ScheduleExtension extends Extension
+class ContaoScheduleExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -29,8 +29,6 @@ class ScheduleExtension extends Extension
             $container,
             new FileLocator(__DIR__.'/../Resources/config')
         );
-#        $container->setParameter('kommunikatisten_schedule', $mergedConfig);
-#        $this->processConfiguration(new Configuration(), $mergedConfig);
 
         $loader->load('services.yaml');
 #        $loader->load('translation.yaml');

@@ -1,5 +1,6 @@
 {
-    "type": "project",
+    "name": "kommunikatisten/contao-schedule-bundle",
+    "type": "contao-bundle",
     "license": "proprietary",
     "require": {
         "php": "^7.2",
@@ -33,12 +34,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Kommunikatisten\\ScheduleBundle\\": "src/"
+            "Kommunikatisten\\ContaoScheduleBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Kommunikatisten\\ScheduleBundle\\Tests\\": "test/"
+            "Kommunikatisten\\ContaoScheduleBundle\\Tests\\": "test/"
         }
     },
     "conflict": {
@@ -47,5 +48,9 @@
     },
     "extra": {
         "contao-manager-plugin": "Kommunikatisten\\ScheduleBundle\\ContaoManager\\Plugin"
+    },
+    "support": {
+        "issues": "https://github.com/kommunikatisten/contao-course-schedule-bundle.git/issues",
+        "source": "https://github.com/kommunikatisten/contao-course-schedule-bundle.git"
     }
 }

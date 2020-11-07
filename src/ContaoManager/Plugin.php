@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Kommunikatisten\ScheduleBundle\ContaoManager;
+namespace Kommunikatisten\ContaoScheduleBundle\ContaoManager;
 
 use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
-use Kommunikatisten\ScheduleBundle\ScheduleBundle;
+use Kommunikatisten\ContaoScheduleBundle\ContaoScheduleBundle;
 
 class Plugin implements BundlePluginInterface
 {
@@ -17,7 +17,7 @@ class Plugin implements BundlePluginInterface
     public function getBundles(ParserInterface $parser)
     {
         return [
-            BundleConfig::create(ScheduleBundle::class)
+            BundleConfig::create(ContaoScheduleBundle::class)
                 ->setLoadAfter([ContaoCoreBundle::class]),
         ];
     }
