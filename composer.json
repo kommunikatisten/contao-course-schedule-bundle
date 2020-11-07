@@ -47,7 +47,7 @@
         "contao/manager-plugin": "<2.0 || >=3.0"
     },
     "extra": {
-        "contao-manager-plugin": "Kommunikatisten\\ScheduleBundle\\ContaoManager\\Plugin"
+        "contao-manager-plugin": "Kommunikatisten\\ContaoScheduleBundle\\ContaoManager\\Plugin"
     },
     "support": {
         "issues": "https://github.com/kommunikatisten/contao-course-schedule-bundle.git/issues",
