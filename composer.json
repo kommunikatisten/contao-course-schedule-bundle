@@ -1,0 +1,51 @@
+{
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": "^7.2",
+        "contao/core-bundle": "4.9.*",
+        "composer/package-versions-deprecated": "^1.11",
+        "symfony/framework-bundle": "4.4.*",
+        "doctrine/annotations": "^1.11",
+        "doctrine/doctrine-bundle": "^1.8",
+        "doctrine/doctrine-migrations-bundle": "^3.0",
+        "doctrine/orm": "^2.7",
+        "phpdocumentor/reflection-docblock": "^5.2",
+        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/twig": "^2.12|^3.0"
+    },
+    "require-dev": {
+        "contao/manager-plugin": "^2.0",
+        "symfony/browser-kit": "^4.4",
+        "symfony/css-selector": "^4.4",
+        "symfony/debug-bundle": "^4.4",
+        "symfony/maker-bundle": "^1.0",
+        "symfony/phpunit-bridge": "^5.1",
+        "symfony/stopwatch": "^4.4",
+        "symfony/var-dumper": "^4.4",
+        "symfony/web-profiler-bundle": "^4.4"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Kommunikatisten\\ScheduleBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Kommunikatisten\\ScheduleBundle\\Tests\\": "test/"
+        }
+    },
+    "conflict": {
+        "contao/core": "*",
+        "contao/manager-plugin": "<2.0 || >=3.0"
+    },
+    "extra": {
+        "contao-manager-plugin": "Kommunikatisten\\ScheduleBundle\\ContaoManager\\Plugin"
+    }
+}
