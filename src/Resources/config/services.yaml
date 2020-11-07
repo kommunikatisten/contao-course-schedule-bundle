@@ -1,5 +1,5 @@
 parameters:
-  kommunikatiten_schedule.author.email: 'effeff67@kommunikatisten.net'
+  kommunikatisten_schedule.author.email: 'effeff67@kommunikatisten.net'
 
 services:
   # default configuration for services in *this* file

@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of Kommunikatisten
+ * This file is part of Kommunikatisten\ContaoScheduleBundle
  *
  * (c) kommunikatisten.net
  *
