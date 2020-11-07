@@ -8,7 +8,7 @@ use Patchwork\Utf8;
 
 class ScheduleModule extends Module {
 
-    protected string $strTemplate = 'mod_schedule';
+    protected $strTemplate = 'mod_schedule';
 
     /**
      * Displays a wildcard in the back end.
