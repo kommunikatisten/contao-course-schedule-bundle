@@ -3,10 +3,11 @@
 
 namespace Kommunikatisten\ContaoScheduleBundle\Module;
 
+use Patchwork\Utf8;
 
 class ScheduleModule extends \Module {
 
-    protected $strTemplate = 'mod_schedule';
+    protected string $strTemplate = 'mod_schedule';
 
     /**
      * Displays a wildcard in the back end.
@@ -18,7 +19,7 @@ class ScheduleModule extends \Module {
         if (TL_MODE == 'BE') {
             $template = new \BackendTemplate('be_wildcard');
 
-            $template->wildcard = '### '.utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['schedule'][0]).' ###';
+            $template->wildcard = '### '.Utf8::strtoupper($GLOBALS['TL_LANG']['FMD']['schedule'][0]).' ###';
             $template->title = $this->headline;
             $template->id = $this->id;
             $template->link = $this->name;
