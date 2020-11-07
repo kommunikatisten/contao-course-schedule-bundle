@@ -4,11 +4,9 @@
 namespace Kommunikatisten\ContaoScheduleBundle\Module;
 
 
-use Contao\Module;
+class ScheduleModule extends \Module {
 
-class ScheduleModule extends Module {
-
-    protected string $strTemplate = 'mod_schedule';
+    protected $strTemplate = 'mod_schedule';
 
     /**
      * Displays a wildcard in the back end.
