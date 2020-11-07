@@ -8,7 +8,7 @@ use Contao\Module;
 
 class ScheduleModule extends Module {
 
-    protected string $strTemplate = 'mod_helloWorld';
+    protected string $strTemplate = 'mod_schedule';
 
     /**
      * Displays a wildcard in the back end.
