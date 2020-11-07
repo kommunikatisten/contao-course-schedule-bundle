@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @FrontendModule(
- *     category="texts",
+ *     category="miscellaneous",
  *     template="mod_kom_test",
  *     renderer="forward"
  * )

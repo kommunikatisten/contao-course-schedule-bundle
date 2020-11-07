@@ -1,5 +1,3 @@
 <?php
 
-$GLOBALS['FE_MOD']['schedule'] = array(
-    'schedule' => 'Kommunikatisten\ContaoScheduleBundle\Module\ScheduleModule'
-);
+$GLOBALS['FE_MOD']['miscellaneous']['schedule'] = 'Kommunikatisten\ContaoScheduleBundle\Module\ScheduleModule';

@@ -31,6 +31,5 @@ services:
     tags:
       -
         name: contao.frontend_module
-        category: texts
-        method: getResponse
+        category: miscellaneous
         template: mod_kom_test
