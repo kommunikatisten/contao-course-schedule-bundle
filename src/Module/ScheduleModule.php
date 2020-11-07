@@ -3,9 +3,10 @@
 
 namespace Kommunikatisten\ContaoScheduleBundle\Module;
 
+use Module;
 use Patchwork\Utf8;
 
-class ScheduleModule extends \Module {
+class ScheduleModule extends Module {
 
     protected string $strTemplate = 'mod_schedule';
 

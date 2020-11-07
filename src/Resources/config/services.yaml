@@ -29,7 +29,4 @@ services:
 
   Kommunikatisten\ContaoScheduleBundle\Controller\TestController:
     tags:
-      -
-        name: contao.frontend_module
-        category: miscellaneous
-        template: mod_kom_test
+      - { name: contao.frontend_module, category: miscellaneous, template: mod_kom_test, type: komm_test }
