@@ -26,3 +26,11 @@ services:
   Kommunikatisten\ContaoScheduleBundle\Controller\:
     resource: '../../Controller/'
     tags: [ 'controller.service_arguments','kommunikatisten_schedule' ]
+
+  Kommunikatisten\ContaoScheduleBundle\Controller\TestController:
+    tags:
+      -
+        name: contao.frontend_module
+        category: texts
+        method: getResponse
+        template: mod_kom_test
