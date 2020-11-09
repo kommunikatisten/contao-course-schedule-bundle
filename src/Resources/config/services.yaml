@@ -34,3 +34,6 @@ services:
   Kommunikatisten\ContaoScheduleBundle\Controller\CourseListController:
     tags:
       - { name: contao.frontend_module, category: kommunikatisten, template: ctrl_course_list, type: komm_schedule }
+  Kommunikatisten\ContaoScheduleBundle\Controller\ShortScheduleController:
+    tags:
+      - { name: contao.frontend_module, category: kommunikatisten, template: ctrl_course_short_list, type: komm_schedule_short }
