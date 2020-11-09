@@ -27,9 +27,10 @@ services:
     resource: '../../Controller/'
     tags: [ 'controller.service_arguments','kommunikatisten_schedule' ]
 
-  Kommunikatisten\ContaoScheduleBundle\Controller\TestController:
-    tags:
-      - { name: contao.frontend_module, category: miscellaneous, template: mod_kom_test, type: komm_test }
   Kommunikatisten\ContaoScheduleBundle\Controller\ScheduleController:
     tags:
-      - { name: contao.frontend_module, category: schedule, template: ctrl_schedule, type: komm_schedule }
+      - { name: contao.frontend_module, category: kommunikatisten, template: ctrl_schedule, type: komm_schedule }
+
+  Kommunikatisten\ContaoScheduleBundle\Controller\CourseListController:
+    tags:
+      - { name: contao.frontend_module, category: kommunikatisten, template: ctrl_course_list, type: komm_schedule }

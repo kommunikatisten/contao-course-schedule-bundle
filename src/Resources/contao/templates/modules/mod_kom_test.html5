@@ -1,4 +1,0 @@
-<div class="my-frontend-module">
-    <h3></h3>
-    <p>{{ request_token }}</p>
-</div>

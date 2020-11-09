@@ -20,7 +20,7 @@ class ScheduleModule extends Module {
         if (TL_MODE == 'BE') {
             $template = new \BackendTemplate('be_wildcard');
 
-            $template->wildcard = '### '.Utf8::strtoupper($GLOBALS['TL_LANG']['FMD']['schedule'][0]).' ###';
+            $template->wildcard = '### '.Utf8::strtoupper($GLOBALS['TL_LANG']['FMD']['schedule'][0]).' as List ###';
             $template->title = $this->headline;
             $template->id = $this->id;
             $template->link = $this->name;

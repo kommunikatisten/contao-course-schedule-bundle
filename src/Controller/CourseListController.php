@@ -15,14 +15,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @FrontendModule(
- *     category="miscellaneous",
- *     template="mod_kom_test",
+ *     category="kommunikatisten",
+ *     template="ctrl_course_list",
  *     renderer="forward"
  * )
  */
-class TestController extends AbstractFrontendModuleController
+class CourseListController extends AbstractFrontendModuleController
 {
-    public const TYPE = 'kom_test';
+    public const TYPE = 'ctrl_kommunikatisten_schedule';
 
     protected function getResponse(Template $template, ModuleModel $model, Request $request): ?Response {
         if ($request->isMethod('post')) {
