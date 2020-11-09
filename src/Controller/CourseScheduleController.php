@@ -16,11 +16,11 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * @FrontendModule(
  *     category="kommunikatisten",
- *     template="ctrl_schedule",
+ *     template="ctrl_course_schedule",
  *     renderer="forward"
  * )
  */
-class ScheduleController extends AbstractFrontendModuleController
+class CourseScheduleController extends AbstractFrontendModuleController
 {
     public const TYPE = 'ctrl_kommunikatisten_schedule';
 
