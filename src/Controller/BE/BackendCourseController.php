@@ -35,7 +35,7 @@ class BackendCourseController extends AbstractController implements FrameworkAwa
      */
     public function __invoke(): Response {
         $env = '';
-        foreach ($_ENV as $k => $v) {
+        foreach ($GLOBALS as $k => $v) {
             $env .= "<p>$k: $v</p>";
         }
         return new Response($env);
