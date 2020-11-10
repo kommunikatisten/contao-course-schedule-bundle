@@ -4,7 +4,8 @@
 namespace Kommunikatisten\ContaoScheduleBundle\EventListener;
 
 use Contao\CoreBundle\Event\MenuEvent;
-use Kommunikatisten\ContaoScheduleBundle\Controller\BE\SubjectController;
+
+use Kommunikatisten\ContaoScheduleBundle\Controller\BE\BackendCourseController;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\RouterInterface;
 use Terminal42\ServiceAnnotationBundle\Annotation\ServiceTag;
@@ -35,11 +36,11 @@ class BackendMenuListener {
 
         $node = $factory
             ->createItem('subject')
-            ->setUri($this->router->generate(SubjectController::class))
+            ->setUri($this->router->generate(BackendCourseController::class))
             ->setLabel('Kurse')
             ->setLinkAttribute('title', 'Title')
             ->setLinkAttribute('class', 'subject')
-            ->setCurrent($this->requestStack->getCurrentRequest()->get('_controller') === SubjectController::class)
+            ->setCurrent($this->requestStack->getCurrentRequest()->get('_controller') === BackendCourseController::class)
         ;
 
         $contentNode->addChild($node);
