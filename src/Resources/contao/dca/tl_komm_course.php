@@ -9,14 +9,14 @@ $GLOBALS['TL_DCA']['tl_komm_course']['config'] = array(
     'sql' => array (
         'keys' => array (
             'id' => 'primary',
-            'type' => 'index',
+            'alias' => 'index',
         )
     )
 );
 $GLOBALS['TL_DCA']['tl_komm_course']['list'] = array(
     'sorting' => array(
         'mode'                    => 4,
-        'fields'                  => array('subject_id','published'),
+        'fields'                  => array('alias','published'),
         'headerFields'            => array('tstamp'),
         'panelLayout'             => 'filter;sort,search,limit',
 #        'child_record_callback'   => array('listEvents')
@@ -77,6 +77,6 @@ $GLOBALS['TL_DCA']['tl_komm_course']['fields'] = array(
     ],
 
 );
-$GLOBALS['TL_DCA']['tl_course']['palettes'] = array(
+$GLOBALS['TL_DCA']['tl_komm_course']['palettes'] = array(
     'default' => '{tl_komm_course},alias;'
 );
