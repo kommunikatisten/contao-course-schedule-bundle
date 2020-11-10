@@ -10,7 +10,7 @@ $GLOBALS['TL_DCA']['tl_komm_subject']['config'] = array(
 );
 $GLOBALS['TL_DCA']['tl_komm_subject']['list'] = array(
     'sorting' => array(
-        'mode'                    => 4,
+        'mode'                    => 1,
         'fields'                  => array('subject_id','published'),
         'headerFields'            => array('tstamp'),
         'panelLayout'             => 'filter;sort,search,limit',

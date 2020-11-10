@@ -22,6 +22,7 @@ services:
       - '../../DependencyInjection/'
       - '../../Entity/'
       - '../../Resources/'
+      - '../../DoNotTrack/'
 
   Kommunikatisten\ContaoScheduleBundle\Controller\:
     resource: '../../Controller/'
