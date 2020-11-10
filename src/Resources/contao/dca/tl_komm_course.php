@@ -2,6 +2,7 @@
 
 $GLOBALS['TL_DCA']['tl_komm_course']['config'] = array(
     'dataContainer' => 'Table',
+    'ptable' => 'tl_komm_subject.subject_id',
     'sql' => array (
         'keys' => array (
             'id' => 'primary',
@@ -13,7 +14,7 @@ $GLOBALS['TL_DCA']['tl_komm_course']['list'] = array(
     'sorting' => array(
         'mode'                    => 4,
         'fields'                  => array('alias','published'),
-        'headerFields'            => array('tstamp'),
+        'headerFields'            => array('subject'),
         'panelLayout'             => 'filter;sort,search,limit',
 #        'child_record_callback'   => array('listEvents')
     ),
@@ -60,7 +61,7 @@ $GLOBALS['TL_DCA']['tl_komm_course']['fields'] = array(
     'subject_id' => [
         'foreignKey' => 'tl_komm_subject.id',
         'sql' => ['type' => 'integer', 'unsigned' => true, 'default' => 0],
-        'relation' => ['type'=>'belongsTo', 'load'=>'lazy'],
+        'relation' => ['type'=>'belongsTo', 'load'=>'eager', 'field' => 'id', 'table' => 'tl_komm_subject'],
         'inputType' => 'select',
     ],
     'alias' => [

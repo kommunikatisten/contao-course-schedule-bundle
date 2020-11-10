@@ -11,8 +11,7 @@ $GLOBALS['TL_DCA']['tl_komm_subject']['config'] = array(
 $GLOBALS['TL_DCA']['tl_komm_subject']['list'] = array(
     'sorting' => array(
         'mode'                    => 1,
-        'fields'                  => array('subject','description'),
-        'headerFields'            => array('tstamp'),
+        'fields'                  => array('subject'),
         'panelLayout'             => 'filter;sort,search,limit',
 #        'child_record_callback'   => array('listEvents')
     ),
