@@ -24,13 +24,9 @@ $GLOBALS['TL_DCA']['tl_komm_subject']['list'] = array(
         )
     ),
     'operations' => array(
-        'edit' => array (
-            'href'                => 'table=tl_content',
-            'icon'                => 'edit.svg'
-        ),
         'editheader' => [
             'href'                => 'act=edit',
-            'icon'                => 'header.svg',
+            'icon'                => 'edit.svg',
         ],
         'delete' => array (
             'href'                => 'act=delete',
