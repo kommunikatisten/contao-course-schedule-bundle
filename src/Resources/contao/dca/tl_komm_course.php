@@ -2,7 +2,6 @@
 
 $GLOBALS['TL_DCA']['tl_komm_course']['config'] = array(
     'dataContainer' => 'Table',
-    'ptable' => 'tl_komm_subject',
     'enableVersioning' => true,
     'switchToEdit' => true,
     'markAsCopy' => 'title',
