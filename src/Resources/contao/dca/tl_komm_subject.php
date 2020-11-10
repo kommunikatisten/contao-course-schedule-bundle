@@ -55,11 +55,11 @@ $GLOBALS['TL_DCA']['tl_komm_subject']['fields'] = array(
         'sql' => ['type' => 'integer', 'unsigned' => true, 'default' => 0]
     ],
     'subject' => [
-        'sql' => ['type' => 'string', 'length' => 255, 'notnull' => true],
+        'sql' => ['type' => 'string', 'length' => 255, 'notnull' => true, 'default' => 'add a title here'],
         'inputType' => 'text',
     ],
     'description' => [
-        'sql' => ['type' => 'string', 'length' => 1024, 'notnull' => true],
+        'sql' => ['type' => 'string', 'length' => 1024, 'notnull' => true, 'default' => 'add a description here'],
         'inputType' => 'textarea',
     ],
     'published' => [
