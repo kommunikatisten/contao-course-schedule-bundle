@@ -1,3 +1,8 @@
 <?php
 
-$GLOBALS['FE_MOD']['miscellaneous']['schedule'] = 'Kommunikatisten\ContaoScheduleBundle\Module\ScheduleModule';
+$GLOBALS['BE_MOD']['content']['komm_course'] = [
+    'tables' => ['tl_komm_course'],
+];
+$GLOBALS['BE_MOD']['content']['komm_subject'] = [
+    'tables' => ['tl_komm_subject'],
+];
