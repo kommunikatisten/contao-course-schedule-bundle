@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Kommunikatisten\EventListener;
+namespace Kommunikatisten\ContaoScheduleBundle\EventListener;
 
 use Contao\CoreBundle\Event\MenuEvent;
 use Kommunikatisten\ContaoScheduleBundle\Controller\BE\SubjectController;
