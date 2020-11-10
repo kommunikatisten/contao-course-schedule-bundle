@@ -73,7 +73,7 @@ $GLOBALS['TL_DCA']['tl_komm_course']['fields'] = array(
     ],
     'published' => [
         'inputType' => 'checkbox',
-        'sql' => ['type' => 'tinyint', 'unsigned' => true, 'default' => 0],
+        'sql' => ['type' => 'boolean', 'notnull' => true, 'default' => false],
     ],
 
 );
