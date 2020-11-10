@@ -40,3 +40,6 @@ services:
     tags:
       - { name: contao.frontend_module, category: kommunikatisten, template: ctrl_course_reader, type: course_reader }
 
+  Kommunikatisten\ContaoScheduleBundle\Controller\BE\BackendCourseController:
+    tags:
+      - { name: contao.backend_module, category: kommunikatisten, template: ctrl_course_reader, type: be_komm_course }
