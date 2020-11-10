@@ -36,7 +36,7 @@ class BackendCourseController extends AbstractController implements FrameworkAwa
     public function __invoke(): Response {
         $env = '';
         foreach ($GLOBALS['_SESSION'] as $k => $v) {
-            $env .= "<p>$k: </p>";// . \Safe\json_encode($v) .'</p>';
+            $env .= "<p>$k: " . \Safe\json_encode($v) .'</p>';
         }
         return new Response($env);
 
