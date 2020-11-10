@@ -9,6 +9,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Contao\CoreBundle\Framework\FrameworkAwareInterface;
 use Twig\Environment as TwigEnvironment;
+use Twig\Error\Error;
+
 /**
  * @Route("/contao/kommunikatisten/subjects",
  *     name=SubjectController::class,
@@ -17,15 +19,18 @@ use Twig\Environment as TwigEnvironment;
  */
 class SubjectController extends AbstractController implements FrameworkAwareInterface {
 
-    private ContaoFramework $framework;
+    private ?ContaoFramework $framework;
     private TwigEnvironment $twig;
 
     public function __construct(TwigEnvironment $twig) {
         $this->twig = $twig;
     }
 
-    public function __invoke(): Response
-    {
+    /**
+     * @return Response
+     * @throws Error
+     */
+    public function __invoke(): Response {
         return new Response($this->twig->render(
             'backend_subjects.html.twig',
             []

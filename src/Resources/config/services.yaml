@@ -38,3 +38,7 @@ services:
   Kommunikatisten\ContaoScheduleBundle\Controller\CourseReaderController:
     tags:
       - { name: contao.frontend_module, category: kommunikatisten, template: ctrl_course_reader, type: course_reader }
+
+  Kommunikatisten\ContaoScheduleBundle\Controller\BE\SubjectController:
+    tags:
+      - { name: contao.content_element, category: kommunikatisten, type: be_subject_list }
