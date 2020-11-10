@@ -2,9 +2,6 @@
 
 $GLOBALS['TL_DCA']['tl_komm_course']['config'] = array(
     'dataContainer' => 'Table',
-    'enableVersioning' => true,
-    'switchToEdit' => true,
-    'markAsCopy' => 'title',
     'sql' => array (
         'keys' => array (
             'id' => 'primary',
@@ -77,5 +74,5 @@ $GLOBALS['TL_DCA']['tl_komm_course']['fields'] = array(
 
 );
 $GLOBALS['TL_DCA']['tl_komm_course']['palettes'] = array(
-    'default' => '{tl_komm_course},alias;'
+    'default' => '{title_legend},alias;'
 );
