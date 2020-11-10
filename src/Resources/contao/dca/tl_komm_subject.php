@@ -48,7 +48,7 @@ $GLOBALS['TL_DCA']['tl_komm_subject']['list'] = array(
         ),
     ),
     'label' => array(
-        'fields' => ['id','subject','published'],
+        'fields' => ['subject','description','published'],
     ),
 );
 $GLOBALS['TL_DCA']['tl_komm_subject']['fields'] = array(
