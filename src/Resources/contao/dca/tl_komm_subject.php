@@ -69,6 +69,6 @@ $GLOBALS['TL_DCA']['tl_komm_subject']['fields'] = array(
 
 );
 $GLOBALS['TL_DCA']['tl_komm_subject']['palettes'] = array(
-    'default' => '{title_legend},id;'
+    'default' => '{title_legend},subject,description,published;'
 );
 
