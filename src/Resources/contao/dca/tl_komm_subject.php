@@ -13,6 +13,7 @@ $GLOBALS['TL_DCA']['tl_komm_subject']['config'] = array(
     )
 );
 $GLOBALS['TL_DCA']['tl_komm_subject']['list'] = array(
+    'route' => '/contao/kommunikatisten/subjects',
     'sorting' => array(
         'mode'                    => 4,
         'fields'                  => array('subject_id','published'),
