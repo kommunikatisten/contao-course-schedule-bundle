@@ -34,10 +34,11 @@ class SubjectController extends AbstractController implements FrameworkAwareInte
      * @throws Error
      */
     public function __invoke(): Response {
+        $response = '';
         foreach ($this->twig->getGlobals() as $k => $gl) {
-            $this->logger->info($k + ': ' + $gl);
+            $response += '<p>' + $k + ': ' + $gl + '</p>';
         }
-        return new Response('<p>it s me </p>');
+        return new Response('<p>it s me </p>' + $response);
         /*
         return new Response($this->twig->render(
             '../vendor/kommunikatisten/Resources/views/backend_subjects.html.twig',
