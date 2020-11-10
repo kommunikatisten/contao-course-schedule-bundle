@@ -32,7 +32,7 @@ class SubjectController extends AbstractController implements FrameworkAwareInte
      */
     public function __invoke(): Response {
         return new Response($this->twig->render(
-            __DIR__ . '/../../Resources/views/backend_subjects.html.twig',
+            '../vendor/kommunikatisten/Resources/views/backend_subjects.html.twig',
             []
         ));
     }
