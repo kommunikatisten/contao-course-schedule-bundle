@@ -11,7 +11,7 @@ $GLOBALS['TL_DCA']['tl_komm_subject']['config'] = array(
 $GLOBALS['TL_DCA']['tl_komm_subject']['list'] = array(
     'sorting' => array(
         'mode'                    => 1,
-        'fields'                  => array('subject','published'),
+        'fields'                  => array('subject','description'),
         'headerFields'            => array('tstamp'),
         'panelLayout'             => 'filter;sort,search,limit',
 #        'child_record_callback'   => array('listEvents')
@@ -24,7 +24,7 @@ $GLOBALS['TL_DCA']['tl_komm_subject']['list'] = array(
         )
     ),
     'operations' => array(
-        'editheader' => [
+        'edit' => [
             'href'                => 'act=edit',
             'icon'                => 'edit.svg',
         ],
@@ -69,6 +69,6 @@ $GLOBALS['TL_DCA']['tl_komm_subject']['fields'] = array(
 
 );
 $GLOBALS['TL_DCA']['tl_komm_subject']['palettes'] = array(
-    'default' => '{title_legend},subject;'
+    'default' => '{title_legend},id;'
 );
 
