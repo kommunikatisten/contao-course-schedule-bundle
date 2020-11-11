@@ -42,4 +42,4 @@ services:
 
   Kommunikatisten\ContaoScheduleBundle\Controller\BE\BackendCourseController:
     tags:
-      - { name: contao.backend_module, category: kommunikatisten, template: ctrl_course_reader, type: be_komm_course }
+      - { name: contao.backend_module, category: kommunikatisten, template: course, type: be_komm_course }
