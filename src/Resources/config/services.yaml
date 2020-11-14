@@ -20,9 +20,9 @@ services:
     resource: '../../'
     exclude:
       - '../../DependencyInjection/'
-      - '../../Entity/'
       - '../../Resources/'
       - '../../DoNotTrack/'
+      - '../../Entity'
 
   Kommunikatisten\ContaoScheduleBundle\Controller\:
     resource: '../../Controller/'
@@ -43,3 +43,20 @@ services:
   Kommunikatisten\ContaoScheduleBundle\Controller\BE\BackendCourseController:
     tags:
       - { name: contao.backend_module, category: kommunikatisten, template: course, type: be_komm_course }
+
+  Kommunikatisten\ContaoScheduleBundle\Controller\BE\BackendSubjectController:
+    tags:
+      - { name: contao.backend_module, category: kommunikatisten, template: subject, type: be_komm_course }
+
+  Kommunikatisten\ContaoScheduleBundle\Controller\BE\BackendTeacherController:
+    tags:
+      - { name: contao.backend_module, category: kommunikatisten, template: teacher, type: be_komm_course }
+
+  # services
+  Kommunikatisten\ContaoScheduleBundle\Service\:
+    resource: '../../Service/'
+    tags: [ 'controller.service_arguments','kommunikatisten_schedule' ]
+  Kommunikatisten\ContaoScheduleBundle\Service\TeacherBackendService:
+    tags:
+      - { name: contao.backend_service, category: kommunikatisten, template: teacher, type: be_komm_course }
+
