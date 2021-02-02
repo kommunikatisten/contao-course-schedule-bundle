@@ -1,0 +1,25 @@
+{% extends "@ContaoCore/Backend/be_page.html.twig" %}
+{% block main %}
+    <div class="tl_listing_container">
+        <div id="tl_buttons">
+            <a href="{{ route }}" class="header_back" accesskey="b">Zurück</a>
+        </div>
+        <form action="{{ route }}" method="post" id="kommunikatisten_form" class="tl_form tl_edit_form" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="_method" id="_method" value="{{ method }}"/>
+            <input type="hidden" name="_route" id="_route" value="{{ route }}"/>
+            <input type="hidden" name="REQUEST_TOKEN" value="{{ rt }}"/>
+        {% block form %}
+            <p>hier sollte eigentlich ein formular angezeigt werden</p>
+        {% endblock form %}
+            <div class="tl_formbody_submit">
+                <div class="tl_submit_container">
+                    <button type="submit" class="tl_submit" accesskey="s">Speichern</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block error %}
+    Will be placed within the error block.
+{% endblock %}

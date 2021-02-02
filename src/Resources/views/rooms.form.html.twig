@@ -1,0 +1,21 @@
+{% extends "@ContaoSchedule/template.form.html.twig" %}
+{% block headline %}
+    Tanzraum anlegen/bearbeiten
+{% endblock %}
+
+{% block form %}
+<input type="hidden" name="id" value="{{ room.id }}"/>
+<fieldset id="pal_general_props" class="tl_tbox">
+    <legend onclick="AjaxRequest.toggleFieldset(this,'general_props','tl_content')">Allgemeine Angaben</legend>
+    <div class="w50 widget">
+        <input type="text" name="room_name" id="room_name"
+               value="{{ room.name }}"
+               size="55"/>
+        <br/>
+        <label class="tl_help" for="room_name">Bezeichnung des Raumes</label>
+    </div>
+    <br/>
+</fieldset>
+    {% endblock %}
+
+

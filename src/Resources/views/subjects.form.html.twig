@@ -1,0 +1,39 @@
+{% extends "@ContaoSchedule/template.form.html.twig" %}
+{% block headline %}
+    Kurs anlegen/bearbeiten
+{% endblock %}
+
+{% block form %}
+<input type="hidden" name="id" value="{{ subject.id }}"/>
+<fieldset id="pal_general_props" class="tl_tbox">
+    <legend onclick="AjaxRequest.toggleFieldset(this,'general_props','tl_content')">Allgemeine Angaben</legend>
+    <div>
+        <input type="text" name="subject_name" id="subject_name"
+               value="{{ subject.name }}"
+               size="36"/>
+        <br/>
+        <label class="tl_help" for="subject_name">Name des Kurses</label>
+    </div>
+    <br/>
+    <div>
+        <textarea name="subject_description" id="subject_description" cols="35" rows="5">{{ subject.description }}</textarea>
+        <br/>
+        <label class="tl_help" for="subject_description">Kursbeschreibung</label>
+    </div>
+    <br/>
+</fieldset>
+<fieldset id="pal_teacher_props" class="tl_tbox">
+    <legend onclick="AjaxRequest.toggleFieldset(this,'teacher_props','tl_content')">mögliche Leiter</legend>
+    <div class="w50 widget">
+        <select name="subject_teachers[]" id="subject_teachers" multiple>
+            {% for teacher in teachers %}
+                <option value="{{ teacher.id }}" {% if teacher.id in linked_teachers %}selected{% endif %}>{{ teacher.name }}</option>
+            {% endfor %}
+        </select>
+        <br/>
+        <label class="tl_help" for="subject_teachers">Bitte Auswählen</label>
+    </div>
+</fieldset>
+    {% endblock %}
+
+

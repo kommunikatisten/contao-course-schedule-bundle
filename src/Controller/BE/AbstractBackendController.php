@@ -7,20 +7,25 @@ namespace Kommunikatisten\ContaoScheduleBundle\Controller\BE;
 use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\CoreBundle\Framework\FrameworkAwareInterface;
 use Contao\System;
+use Exception;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Twig\Environment as TwigEnvironment;
 use Twig\Error\Error as TwigError;
 
 abstract class AbstractBackendController extends AbstractController implements FrameworkAwareInterface {
 
     protected LoggerInterface $logger;
+    protected TwigEnvironment $twig;
 
     /**
      * AbstractBackendController constructor.
+     * @param TwigEnvironment $twig
      */
-    public function __construct() {
+    public function __construct(TwigEnvironment $twig) {
+        $this->twig = $twig;
         $this->logger = System::getContainer()->get('monolog.logger.contao');
     }
 
@@ -37,24 +42,35 @@ abstract class AbstractBackendController extends AbstractController implements F
      */
     public function __invoke(Request $request): Response {
         $this->logger->info(self::class . ' invoked ' . $request->getMethod() );
-        if($request->get('id') == null) {
-            switch ($request->getMethod()) {
-                case 'POST': // do add and return to list
-                    return $this->doAddEntity($request);
-                case 'DELETE': // do delete and return to list
-                    return $this->doDeleteEntity($request);
-                default:
+        switch ($request->getMethod()) {
+            case 'POST': {
+                try {
+                    if ($request->get('_method') == 'POST') {
+                        $this->doAddEntity($request);
+                    } elseif ($request->get('_method') == 'PUT') {
+                        $this->doEditEntity($request);
+                    }
                     return $this->listEntities($request);
+                } catch (Exception $e) {
+                    return $this->showError($e);
+                }
             }
-        } else {
-            switch ($request->getMethod()) {
-                case 'PUT': // do edit and return to list
-                    return $this->doEditEntity($request);
-                default:
+            case 'GET': {
+                if($request->get('_method') == 'POST') {
+                    return $this->addEntity($request);
+                } elseif($request->get('_method') == 'PUT') {
                     return $this->editEntity($request);
+                } elseif($request->get('_method') == 'DELETE') {
+                    $this->doDeleteEntity($request);
+                }
+                return $this->listEntities($request);
             }
+            case 'PUT': {
+                $this->doEditEntity($request);
+                return $this->listEntities($request);
+            }
+            default: return $this->showError(new Exception("unexpected RequestMethod: " . $request->getMethod()));
         }
-
     }
 
     /**
@@ -74,18 +90,18 @@ abstract class AbstractBackendController extends AbstractController implements F
 
     /**
      * @param Request $request
-     * @return Response
+     * @return void
      * @throws TwigError
      */
-    abstract protected function doAddEntity(Request $request): Response;
+    abstract protected function doAddEntity(Request $request): void;
 
 
     /**
      * @param Request $request
-     * @return Response
+     * @return void
      * @throws TwigError
      */
-    abstract protected function doEditEntity(Request $request): Response;
+    abstract protected function doEditEntity(Request $request): void;
 
     /**
      * @param Request $request
@@ -96,10 +112,9 @@ abstract class AbstractBackendController extends AbstractController implements F
 
     /**
      * @param Request $request
-     * @return Response
      * @throws TwigError
      */
-    abstract protected function doDeleteEntity(Request $request): Response;
+    abstract protected function doDeleteEntity(Request $request): void;
 
     /**
      * @param array $array
@@ -108,5 +123,12 @@ abstract class AbstractBackendController extends AbstractController implements F
     protected static function last(array $array) {
         if(null == $array || empty($array)) return null;
         return $array[count($array)-1];
+    }
+
+    protected function showError(Exception $exception): Response {
+        return new Response($this->twig->render(
+            'kommunikatisten/backend/error.html.twig',
+            ['message' => $exception->getMessage()]
+        ));
     }
 }

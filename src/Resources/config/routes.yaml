@@ -1,15 +1,5 @@
-#random_number:
-#    path: /randomize/number
-#    controller:
-#controllers:
-#   resource: '../../Controller/'
-#   type:     annotation
-# kommunikatisten_schedule:
+kommunikatisten_contao_schedule.controller:
+    # loads routes from the PHP annotations of the controllers found in that directory
+    resource: '../../Controller/'
+    type: annotation
 
-#kommunikatisten_schedule.controller:
-#  path: /randomize/number
-#  controller: App\Kommunikatisten\ScheduleBundle\Controller\RandomController::number
-kommunikatisten_schedule.controller:
-  # loads routes from the PHP annotations of the controllers found in that directory
-  resource: '../../Controller/'
-  type: annotation

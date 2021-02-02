@@ -1,0 +1,104 @@
+{% extends "@ContaoSchedule/template.form.html.twig" %}
+{% block headline %}
+    Kurs anlegen/bearbeiten
+{% endblock %}
+
+{% block form %}
+    <input type="hidden" name="id" value="{{ course.id }}"/>
+    <fieldset id="pal_general_props" class="tl_tbox">
+        <legend onclick="AjaxRequest.toggleFieldset(this,'general_props','tl_content')">Allgemeine Angaben</legend>
+        <div>
+            <input type="text" name="course_name" id="course_name"
+                   value="{{ course.name }}"
+                   size="36"/>
+            <br/>
+            <label class="tl_help" for="course_name">Kennzeichnung*</label>
+        </div>
+        <br/>
+        <div>
+            <select name="course_subject_id" id="course_subject_id">
+                    <option value="0">&nbsp;Bitte wählen!&nbsp;</option>
+                {% for subject in subjects %}
+                    <option value="{{ subject.id }}" {% if course.subject.id == subject.id %}selected{% endif %}>&nbsp;{{ subject.name }}&nbsp;</option>
+                {% endfor %}
+            </select>
+            <br/>
+            <label class="tl_help" for="course_subject_id">Tanzkurs*</label>
+        </div>
+        <br/>
+        <div>
+            <select name="course_day_index" id="course_day_index">
+                <option value="0">&nbsp;Bitte wählen!&nbsp;</option>
+                {% for idx,day in days %}
+                    <option value="{{ idx }}" {% if course.dayIndex == idx %}selected{% endif %}>&nbsp;{{ day }}&nbsp;</option>
+                {% endfor %}
+            </select>
+            <br/>
+            <label class="tl_help" for="course_day_index">Tag*</label>
+        </div>
+        <br/>
+        <table>
+            <tr>
+                <td>
+            <input type="text" name="course_start_time" id="course_start_time"
+                   value="{{ course.startTime }}"
+                   size="6"/>
+                </td>
+                <td>&nbsp;-&nbsp;</td>
+                <td><input type="text" name="course_end_time" id="course_end_time"
+                   value="{{ course.endTime }}"
+                   size="6"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="tl_help" for="course_start_time">von*</label>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <label class="tl_help" for="course_end_time">bis*</label>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <div>
+            <select name="course_room_id" id="course_room_id">
+                <option value="0">&nbsp;Bitte wählen!&nbsp;</option>
+                {% for room in rooms %}
+                    <option value="{{ room.id }}" {% if course.room.id == room.id %}selected{% endif %}>&nbsp;{{ room.name }}&nbsp;</option>
+                {% endfor %}
+            </select>
+            <br/>
+            <label class="tl_help" for="course_room_id">Raum*</label>
+        </div>
+        <br/>
+    </fieldset>
+    <fieldset id="pal_teacher_props" class="tl_tbox">
+        <legend onclick="AjaxRequest.toggleFieldset(this,'teacher_props','tl_content')">Tanzlehrer</legend>
+        <div class="w50 widget">
+            <select name="course_teachers[]" id="course_teachers" multiple>
+                {% for teacher in teachers %}
+                    <option value="{{ teacher.id }}" {% if teacher.id in linked_teachers %}selected{% endif %}>{{ teacher.name }}</option>
+                {% endfor %}
+            </select>
+            <br/>
+            <label class="tl_help" for="course_teachers">Bitte Auswählen</label>
+        </div>
+    </fieldset>
+    <fieldset id="pal_date_props" class="tl_tbox">
+        <legend onclick="AjaxRequest.toggleFieldset(this,'date_props','tl_content')">Start~ &amp; Enddatum (fakultativ)</legend>
+        <div>
+            <input type="text" value="{{ course.startDate }}" name="course_start_date" id="course_start_date">
+            <br/>
+            <label class="tl_help" for="course_start_date">Mögliches Startdatum (y-m-d)</label>
+        </div>
+        <br/>
+        <div>
+            <input type="text" value="{{ course.endDate }}" name="course_end_date" id="course_end_date"/>
+            <br/>
+            <label class="tl_help" for="course_end_date">Mögliches Enddatum (y-m-d)</label>
+        </div>
+    </fieldset>
+{% endblock %}
+
+

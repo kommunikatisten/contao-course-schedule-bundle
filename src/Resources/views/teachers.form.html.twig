@@ -1,0 +1,33 @@
+{% extends "@ContaoSchedule/template.form.html.twig" %}
+{% block headline %}
+    Kursleiter anlegen/bearbeiten
+{% endblock %}
+
+{% block form %}
+<input type="hidden" name="id" value="{{ teacher.id }}"/>
+<fieldset id="pal_general_props" class="tl_tbox">
+    <legend onclick="AjaxRequest.toggleFieldset(this,'general_props','tl_content')">Allgemeine Angaben</legend>
+    <div class="w50 widget">
+        <input type="text" name="teacher_name" id="teacher_name"
+               value="{{ teacher.name }}"
+               size="55"/>
+        <br/>
+        <label class="tl_help" for="teacher_name">Vollständiger Name des Kursleiters</label>
+    </div>
+    <br/>
+</fieldset>
+<fieldset id="pal_general_props" class="tl_tbox">
+    <legend onclick="AjaxRequest.toggleFieldset(this,'general_props','tl_content')">Unterricht</legend>
+    <div class="w50 widget">
+        <select name="teacher_subjects[]" id="teacher_subjects" multiple>
+            {% for subject in subjects %}
+                <option value="{{ subject.id }}" {% if subject.id in linked_subjects %}selected{% endif %}>{{ subject.name }}</option>
+            {% endfor %}
+        </select>
+        <br/>
+        <label class="tl_help" for="teacher_subjects">Bitte Auswählen</label>
+    </div>
+</fieldset>
+    {% endblock %}
+
+

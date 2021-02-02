@@ -2,6 +2,8 @@ parameters:
   kommunikatisten_schedule.author.email: 'effeff67@kommunikatisten.net'
 
 services:
+#  kernel_bundle:
+#    class: Kommunikatisten\ContaoSchedule\ContaoScheduleBundle
   # default configuration for services in *this* file
   _defaults:
     autowire: true      # Automatically injects dependencies in your services.
@@ -24,6 +26,28 @@ services:
       - '../../DoNotTrack/'
       - '../../Entity'
 
+  # services
+  Kommunikatisten\ContaoScheduleBundle\Service\:
+    resource: '../../Service/'
+    tags: [ 'controller.service_arguments','kommunikatisten_schedule' ]
+
+  Kommunikatisten\ContaoScheduleBundle\Service\CourseScheduleService:
+    tags:
+      - { name: contao.frontend_service }
+
+  Kommunikatisten\ContaoScheduleBundle\Service\BE\BackendTeacherService:
+    tags:
+      - { name: contao.backend_service, category: kommunikatisten, template: teacher, type: be_komm_course }
+
+  Kommunikatisten\ContaoScheduleBundle\Service\BE\BackendCourseService:
+    tags:
+      - { name: contao.backend_service, category: kommunikatisten, template: course, type: be_komm_course }
+
+  Kommunikatisten\ContaoScheduleBundle\Service\BE\BackendSubjectService:
+    tags:
+      - { name: contao.backend_service, category: kommunikatisten, template: course, type: be_komm_course }
+
+  # controller
   Kommunikatisten\ContaoScheduleBundle\Controller\:
     resource: '../../Controller/'
     tags: [ 'controller.service_arguments','kommunikatisten_schedule' ]
@@ -31,10 +55,6 @@ services:
   Kommunikatisten\ContaoScheduleBundle\Controller\CourseScheduleController:
     tags:
       - { name: contao.frontend_module, category: kommunikatisten, template: ctrl_schedule, type: course_schedule }
-
-  Kommunikatisten\ContaoScheduleBundle\Controller\CourseListController:
-    tags:
-      - { name: contao.frontend_module, category: kommunikatisten, template: ctrl_course_list, type: course_list }
 
   Kommunikatisten\ContaoScheduleBundle\Controller\CourseReaderController:
     tags:
@@ -52,11 +72,8 @@ services:
     tags:
       - { name: contao.backend_module, category: kommunikatisten, template: teacher, type: be_komm_course }
 
-  # services
-  Kommunikatisten\ContaoScheduleBundle\Service\:
-    resource: '../../Service/'
-    tags: [ 'controller.service_arguments','kommunikatisten_schedule' ]
-  Kommunikatisten\ContaoScheduleBundle\Service\TeacherBackendService:
+  Kommunikatisten\ContaoScheduleBundle\Controller\BE\BackendRoomController:
     tags:
-      - { name: contao.backend_service, category: kommunikatisten, template: teacher, type: be_komm_course }
+      - { name: contao.backend_module, category: kommunikatisten, template: room, type: be_komm_course }
+
 

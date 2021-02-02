@@ -1,0 +1,20 @@
+{% extends "@ContaoCore/Backend/be_page.html.twig" %}
+
+{% block main %}
+    <div class="tl_listing_container">
+        <div id="tl_buttons">
+            <a href="{{ route }}?_method=POST" class="header_new" accesskey="n">Neu</a>
+        </div>
+        <table class="tl_listing">
+        {% block liste %}
+            <tr>
+                <td>hier sollte eigentlich eine liste angezeigt werden</td>
+            </tr>
+        {% endblock liste %}
+        </table>
+    </div>
+{% endblock %}
+
+{% block error %}
+    Will be placed within the error block.
+{% endblock %}

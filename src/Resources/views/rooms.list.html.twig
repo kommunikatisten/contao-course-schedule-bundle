@@ -1,0 +1,24 @@
+{% extends "@ContaoSchedule/template.list.html.twig" %}
+{% block headline %}
+    Raum anlegen/bearbeiten
+{% endblock %}
+
+{% block liste %}
+    {% set tr_class = 'even' %}
+    {% for room in rooms %}
+        {% set tr_class = tr_class == 'even' ? 'odd' : 'even' %}
+        <tr class="{{ tr_class }} click2edit toggle_select hover-row">
+            <td class="tl_file_list"> {{ room.name }}</td>
+            <td class="tl_file_list tl_right_nowrap">
+                <a href="{{ route }}?id={{ room.id }}&_method=PUT" class="edit">
+                    <img src="system/themes/flexible/icons/edit.svg" width="16" height="16" alt="Raum [{{ room.id }}] bearbeiten">
+                </a>
+                <a href="{{ route }}?id={{ room.id }}&_method=DELETE" class="delete" onclick="if(!confirm('Soll dieser Raum {{ room.name }} wirklich gelöscht werden?')) return false;">
+                    <img src="system/themes/flexible/icons/delete.svg" width="16" height="16" alt="Kurs [{{ room.id }}] löschen">
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}
+
+

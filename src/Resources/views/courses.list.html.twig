@@ -1,0 +1,36 @@
+{% extends "@ContaoSchedule/template.list.html.twig" %}
+{% block headline %}
+    Tanzstunde für den Stundenplan anlegen/bearbeiten
+{% endblock %}
+
+{% block liste %}
+    <thead>
+        <tr>
+            <th>Kennzeichner</th>
+            <th>Tag</th>
+            <th>von - bis</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% set tr_class = 'even' %}
+    {% for course in courses %}
+        {% set tr_class = tr_class == 'even' ? 'odd' : 'even' %}
+        <tr class="{{ tr_class }} click2edit toggle_select hover-row">
+            <td class="tl_file_list"> {{ course.name }} </td>
+            <td class="tl_file_list"> {{ days[course.dayIndex] }} </td>
+            <td class="tl_file_list"> {{ course.startTime }}&nbsp;-&nbsp;{{ course.endTime }}</td>
+            <td class="tl_file_list tl_right_nowrap">
+                <a href="{{ route }}?id={{ course.id }}&_method=PUT" class="edit">
+                    <img src="system/themes/flexible/icons/edit.svg" width="16" height="16" alt="Tanzstunde [{{ course.id }}] bearbeiten">
+                </a>
+                <a href="{{ route }}?id={{ course.id }}&_method=DELETE" class="delete" onclick="if(!confirm('Soll dieser Eintrag {{ course.name }} wirklich gelöscht werden?')) return false;">
+                    <img src="system/themes/flexible/icons/delete.svg" width="16" height="16" alt="Tanzstunde [{{ course.id }}] löschen">
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+{% endblock %}
+
+

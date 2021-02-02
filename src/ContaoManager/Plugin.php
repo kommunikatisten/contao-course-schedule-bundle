@@ -25,7 +25,7 @@ class Plugin implements BundlePluginInterface, RoutingPluginInterface
             BundleConfig::create(ContaoScheduleBundle::class)
                 ->setLoadAfter([
                     TwigBundle::class,
-                    ContaoCoreBundle::class
+                    ContaoCoreBundle::class,
                 ]),
         ];
     }

@@ -1,4 +1,72 @@
-<div class="my-frontend-module">
-    <h3>Stundenplan</h3>
-    <p>Das ist erstmal nur ein Platzhalter.</p>
+<?php
+$data = $this->arrData;
+?>
+<div class="stunden_plan">
+    <table>
+        <thead>
+        <tr><?php
+            foreach ($data['days'] as $k => $day) {
+                echo '
+                    <th colspan="', count($data['rooms']), '">', strtoupper($day), '</th>';
+            }
+            ?>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php
+        $block = array();
+        foreach ($data['days'] as $day) {
+            $block[$day] = array();
+            foreach ($data['rooms'] as $room) {
+                $block[$day][$room] = 0;
+            }
+        }
+        $started = false; $finishedTime = 0;
+        for ($startTime = 0; $startTime <= 1420; $startTime += 30) {
+            if (($started || !empty($data['courses']["$startTime"])) && ($finishedTime == 0 || $startTime <= $finishedTime)) {
+                $started = true;
+                echo '<tr>';
+                foreach ($data['days'] as $day) {
+                    foreach ($data['rooms'] as $room) {
+                        if (empty($data['courses']["$startTime"][$day])) {
+                            if ($block[$day][$room] == 0) {
+                                echo '<td>&nbsp;</td>';
+                            } else $block[$day][$room]--;
+                        } else {
+                            /**
+                             * @var array $course
+                             */
+                            foreach ($data['courses']["$startTime"][$day] as $course) {
+                                if ($course['room'] == $room) {
+                                    $block[$day][$room] = round($course['durationMinutes'] / 30, 0);
+                                    echo '<td class="stunden_plan_kurs ' . $course['css'] . ($course['future'] ? ' future' : '') .'" rowspan="' . $block[$day][$room] . '">';
+                                    if($course['future'] && !empty($course['startDate'])) {
+                                        echo '<span>startet am ' . $course['startDate'] . '</span>';
+                                    }
+                                    echo '<h4 class="stunden_plan_kurs">', $course['subject'], $course['dayIndex'], '</h4>';
+                                    echo '<span class="stunden_plan_kurs">', $course['startTime'], '&nbsp;-&nbsp;', $course['endTime'], '</span>';
+                                    echo '</td>';
+                                    if($course['durationMinutes'] + $startTime > $finishedTime) {
+                                        $finishedTime = $course['durationMinutes'] + $startTime;
+                                    }
+                                    $block[$day][$room]--;
+                                } elseif ($block[$day][$room] == 0) {
+                                    echo '<td>&nbsp;</td>';
+                                }
+
+                            }
+                        }
+                        echo '</td>';
+                    }
+                }
+                echo '</tr>';
+            }
+        }
+        ?>
+
+
+        </tbody>
+    </table>
 </div>

@@ -22,7 +22,7 @@ class ContaoScheduleExtension extends Extension
      * {@inheritdoc}
      * @throws Exception
      */
-    public function load(array $mergedConfig, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new YamlFileLoader(
             $container,
@@ -30,5 +30,15 @@ class ContaoScheduleExtension extends Extension
         );
 
         $loader->load('services.yaml');
+/*
+        if (isset($config['twig'])) {
+            $loader->load('twig.yaml');
+            $container->loadFromExtension('twig', [
+                'paths' => [
+                    '%kernel.project_dir%/vendor/kommunikatisten/contao-schedule-bundle/Resources/views' => 'KommunikatistenContaoSchedule',
+                ]
+            ]);
+        }
+*/
     }
 }

@@ -6,6 +6,7 @@ namespace Kommunikatisten\ContaoScheduleBundle\EventListener;
 use Contao\CoreBundle\Event\MenuEvent;
 
 use Kommunikatisten\ContaoScheduleBundle\Controller\BE\BackendCourseController;
+use Kommunikatisten\ContaoScheduleBundle\Controller\BE\BackendRoomController;
 use Kommunikatisten\ContaoScheduleBundle\Controller\BE\BackendSubjectController;
 use Kommunikatisten\ContaoScheduleBundle\Controller\BE\BackendTeacherController;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -38,22 +39,24 @@ class BackendMenuListener {
 
 
         $contentNode->addChild($factory
+            ->createItem('room')->setUri($this->router->generate(BackendRoomController::class))
+            ->setLabel('Tanzkursräume')
+            ->setLinkAttribute('title', 'Zur Liste der Tanzkursräume')
+            ->setCurrent($this->requestStack->getCurrentRequest()->get('_controller') === BackendTeacherController::class));
+        $contentNode->addChild($factory
             ->createItem('teacher')->setUri($this->router->generate(BackendTeacherController::class))
-            ->setLinkAttribute('class', 'teacher')
-            ->setLabel('Kursleiter')
-            ->setLinkAttribute('title', 'Title')
+            ->setLabel('Tanzlehrer')
+            ->setLinkAttribute('title', 'Zur Liste der Tanzlehrer')
             ->setCurrent($this->requestStack->getCurrentRequest()->get('_controller') === BackendTeacherController::class));
         $contentNode->addChild($factory
             ->createItem('subject')->setUri($this->router->generate(BackendSubjectController::class))
-            ->setLinkAttribute('class', 'subject')
-            ->setLabel('Kursefächer')
-            ->setLinkAttribute('title', 'Title')
+            ->setLabel('Tanzkurse')
+            ->setLinkAttribute('title', 'Zu den Tanzkursen')
             ->setCurrent($this->requestStack->getCurrentRequest()->get('_controller') === BackendSubjectController::class));
         $contentNode->addChild($factory
             ->createItem('course')->setUri($this->router->generate(BackendCourseController::class))
-            ->setLinkAttribute('class', 'course')
-            ->setLabel('Kurse')
-            ->setLinkAttribute('title', 'Title')
+            ->setLabel('Stundenplan')
+            ->setLinkAttribute('title', 'Zur Liste der Kursstunden')
             ->setCurrent($this->requestStack->getCurrentRequest()->get('_controller') === BackendCourseController::class));
 
 

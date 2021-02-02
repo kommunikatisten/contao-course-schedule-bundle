@@ -1,0 +1,3 @@
+twig:
+  path:
+    '%kernel.project_dir%/vendor/kommunikatisten/contao-schedule-bundle/Resources/views': KommunikatistenContaoSchedule

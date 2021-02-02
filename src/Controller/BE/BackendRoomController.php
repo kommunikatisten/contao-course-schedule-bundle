@@ -4,35 +4,30 @@
 namespace Kommunikatisten\ContaoScheduleBundle\Controller\BE;
 
 use Exception;
-use Kommunikatisten\ContaoScheduleBundle\Entity\Subject;
-use Kommunikatisten\ContaoScheduleBundle\Entity\Teacher;
-use Kommunikatisten\ContaoScheduleBundle\Repository\SubjectRepository;
-use Kommunikatisten\ContaoScheduleBundle\Service\BE\BackendTeacherService;
+use Kommunikatisten\ContaoScheduleBundle\Entity\Room;
+use Kommunikatisten\ContaoScheduleBundle\Service\BE\BackendRoomService;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment as TwigEnvironment;
 use Twig\Error\Error as TwigError;
+use Twig\Loader\FilesystemLoader;
 
 /**
- * @Route("/contao/kommunikatisten/teachers",
- *     name=BackendTeacherController::class,
+ * @Route("/contao/kommunikatisten/rooms",
+ *     name=BackendRoomController::class,
  *     defaults={"_scope" = "backend"}
  * )
  */
-class BackendTeacherController extends AbstractBackendController {
+class BackendRoomController extends AbstractBackendController {
 
-    public const ROUTE = '/contao/kommunikatisten/teachers';
-    private BackendTeacherService $service;
-    private SubjectRepository $subjectRepository;
+    public const ROUTE = '/contao/kommunikatisten/rooms';
+    private BackendRoomService $service;
 
 
-    public function __construct(TwigEnvironment $twig, BackendTeacherService $service,
-                                SubjectRepository $subjectRepository) {
+    public function __construct(TwigEnvironment $twig, BackendRoomService $service) {
         parent::__construct($twig);
-        $this->twig = $twig;
         $this->service = $service;
-        $this->subjectRepository = $subjectRepository;
     }
 
     /**
@@ -42,10 +37,11 @@ class BackendTeacherController extends AbstractBackendController {
      * @throws Exception
      */
     protected function listEntities(Request $request): Response {
-        $teachers = $this->service->findAll();
+        $rooms = $this->service->findAll();
+        //$this->twig->setLoader(new FilesystemLoader(["/vendor/kommunikatisten/contao-schedule-bundle/src/Resources/views"]));
         return new Response($this->twig->render(
             '@ContaoSchedule/' . $this->last(explode('/', self::ROUTE)) . '.list.html.twig',
-            ['route' => self::ROUTE, 'teachers' => $teachers]
+            ['route' => self::ROUTE, 'rooms' => $rooms]
         ));
     }
 
@@ -57,14 +53,11 @@ class BackendTeacherController extends AbstractBackendController {
      */
     protected function addEntity(Request $request): Response {
         $rt = $request->cookies->get('csrf_contao_csrf_token');
-        $teacher = new Teacher();
-        $subjects = $this->subjectRepository->findAll();
+        $room = new Room();
         return new Response($this->twig->render(
             '@ContaoSchedule/' . $this->last(explode('/', self::ROUTE)) . '.form.html.twig',
             ['route' => self::ROUTE, 'rt' => $rt, 'method' => 'POST',
-                'teacher' => $teacher,
-                'subjects' => $subjects,
-                'linked_subjects' => array()
+                'room' => $room
             ]
         ));
     }
@@ -75,11 +68,8 @@ class BackendTeacherController extends AbstractBackendController {
      */
     protected function doAddEntity(Request $request): void {
         $this->service->save([
-            'teacher_id' => 0,
-            'teacher_name' => $request->get('teacher_name'),
-            'teacher_subjects' => array_map(function($id) {
-                return array('subject_id' => intval($id));
-            }, $request->get('teacher_subjects'))
+            'room_id' => 0,
+            'room_name' => $request->get('room_name')
         ]);
     }
 
@@ -91,15 +81,11 @@ class BackendTeacherController extends AbstractBackendController {
      */
     protected function editEntity(Request $request): Response {
         $rt = $request->cookies->get('csrf_contao_csrf_token');
-        $teacher = $this->service->findById($request->get('id'));
-        $subjects = $this->subjectRepository->findAll();
-        $this->logger->info($teacher->serialize(true), array($this));
+        $room = $this->service->findById($request->get('id'));
         return new Response($this->twig->render(
             '@ContaoSchedule/' . $this->last(explode('/', self::ROUTE)) . '.form.html.twig',
             ['route' => self::ROUTE, 'rt' => $rt, 'method' => 'PUT',
-                'teacher' => $teacher,
-                'subjects' => $subjects,
-                'linked_subjects' => array_map(function(Subject $subject){ return $subject->getId(); }, $teacher->getSubjects())
+                'room' => $room
             ]
         ));
     }
@@ -109,13 +95,9 @@ class BackendTeacherController extends AbstractBackendController {
      * @throws Exception
      */
     protected function doEditEntity(Request $request): void {
-        $this->logger->info($request->get('id') . ': '. $request->get('teacher_name') . ' / ' . var_export($request->get('teacher_subjects'), true));
         $this->service->save([
-            'teacher_id' => intval($request->get('id')),
-            'teacher_name' => $request->get('teacher_name'),
-            'teacher_subjects' => array_map(function($id) {
-                return array('subject_id' => intval($id));
-            }, $request->get('teacher_subjects'))
+            'room_id' => intval($request->get('id')),
+            'room_name' => $request->get('room_name')
         ]);
     }
 
